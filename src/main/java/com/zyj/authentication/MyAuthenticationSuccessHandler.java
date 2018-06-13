@@ -43,7 +43,7 @@ public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
 
 
         //如果是要跳转到某个页面的，比如我们的那个whoim的则
-        new DefaultRedirectStrategy().sendRedirect(request, response, "/success");
+        new DefaultRedirectStrategy().sendRedirect(request, response, "/index");
 
     }
 }

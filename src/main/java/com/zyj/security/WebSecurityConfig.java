@@ -43,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()  //表单登录，permitAll()表示这个不需要验证 登录页面，登录失败页面
                 .and()
                 .authorizeRequests()
-                .antMatchers("/", "/css/**", "/index","/img/**").permitAll()
+                .antMatchers("/", "/css/**","/js/**","/img/**").permitAll()
 //                .antMatchers("/whoim").hasRole("ADMIN")
                 .and().authorizeRequests()
                 .anyRequest().access("@rbacService.hasPermission(request,authentication)")    //必须经过认证以后才能访问
