@@ -13,6 +13,23 @@ public class IndexController {
 
     @RequestMapping("/")
     public String index(){
+        return "login";
+    }
+
+    @RequestMapping("/login-error")
+    public String loginError(){
+        return "error";
+    }
+
+    @RequestMapping("/login")
+    public String login(){
+        return "login";
+    }
+
+    @RequestMapping("/success")
+    public String success(){
         return "index";
     }
+
+
 }
