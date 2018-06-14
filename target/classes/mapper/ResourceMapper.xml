@@ -11,14 +11,14 @@
     id, pid, resource_name, resource_url
   </sql>
 
-  <select id="findUrlByRoleId" resultMap="BaseResultMap" >
+  <select id="findUrlByRoleNames" resultType="String" >
     select rs.resource_url
     from resource rs
     LEFT JOIN role_resource rr on rr.resource_id = rs.id
     LEFT JOIN role r on r.id = rr.role_id
-    where r.id in
+    where r.role_name in
     <foreach collection="list" item="item" close=")" open="(" separator=",">
-      #{id}
+      #{item}
     </foreach>
   </select>
 

@@ -31,8 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private AuthenticationFailureHandler myAuthenticationFailHander;
 
-    @Autowired
-    private RbacService rbacService;
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -46,7 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/css/**","/js/**","/img/**").permitAll()
 //                .antMatchers("/whoim").hasRole("ADMIN")
                 .and().authorizeRequests()
-                .anyRequest().access("@rbacService.hasPermission(request,authentication)")    //必须经过认证以后才能访问
+                .antMatchers("/whoim/**").access("@rbacService.hasPermission(request,authentication)")    //必须经过认证以后才能访问
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable();

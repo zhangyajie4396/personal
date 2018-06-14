@@ -32,7 +32,7 @@ public class RbacService {
             User user = (User) principal;
             String[] roles = user.getRole().split(",");
 
-            List<String> urls = resourceMapper.findUrlByRoleId(Arrays.asList(roles));
+            List<String> urls = resourceMapper.findUrlByRoleNames(Arrays.asList(roles));
 
             // 注意这里不能用equal来判断，因为有些URL是有参数的，所以要用AntPathMatcher来比较
             for (String url : urls) {

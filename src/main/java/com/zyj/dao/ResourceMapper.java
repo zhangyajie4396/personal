@@ -26,5 +26,5 @@ public interface ResourceMapper {
      * @Date: 16:04 2018/6/13 
      * @Return: 
      */
-    List<String> findUrlByRoleId(@Param("ids") List<String> ids);
+    List<String> findUrlByRoleNames(List<String> name);
 }
