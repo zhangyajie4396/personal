@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,6 +21,7 @@ import javax.annotation.Resource;
  * @Date: Created in 11:49 2018/6/13
  */
 @Configuration
+@EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -42,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()  //表单登录，permitAll()表示这个不需要验证 登录页面，登录失败页面
                 .and()
                 .authorizeRequests()
-                .antMatchers("/", "/css/**","/js/**","/img/**").permitAll()
+//                .antMatchers("/", "/css/**","/js/**","/img/**").permitAll()
 //                .antMatchers("/whoim").hasRole("ADMIN")
                 .and().authorizeRequests()
                 .antMatchers("/whoim/**").access("@rbacService.hasPermission(request,authentication)")    //必须经过认证以后才能访问
@@ -58,5 +60,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(provider);
 //        auth.inMemoryAuthentication()
 //                .withUser("user").password("password").roles("USER");
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/", "/css/**","/js/**","/img/**");
     }
 }

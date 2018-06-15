@@ -18,13 +18,13 @@ import java.util.List;
  * @Date: Created in 11:20 2018/6/15
  */
 @RestController
-@RequestMapping(value = "/resource")
-public class ResourceController {
+@RequestMapping("/test")
+public class TestController {
 
     @Autowired
     private IResourceService resourceService;
 
-    @RequestMapping(value = "/findResource",method = RequestMethod.GET)
+    @RequestMapping("/test")
     public List<Resource> findResource(){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String[] roles = user.getRole().split(",");

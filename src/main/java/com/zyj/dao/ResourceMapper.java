@@ -26,5 +26,5 @@ public interface ResourceMapper {
      * @Date: 16:04 2018/6/13 
      * @Return: 
      */
-    List<String> findUrlByRoleNames(List<String> name);
+    List<Resource> findUrlByRoleNames(List<String> name);
 }

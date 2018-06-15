@@ -3,6 +3,7 @@ package com.zyj.controller;
 import com.zyj.model.Resource;
 import com.zyj.model.User;
 import com.zyj.service.IResourceService;
+import com.zyj.util.ResultBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,18 +19,18 @@ import java.util.List;
  * @Date: Created in 11:20 2018/6/15
  */
 @RestController
-@RequestMapping("/resource")
+@RequestMapping("/admin/resource")
 public class ResourceController {
 
     @Autowired
     private IResourceService resourceService;
 
     @RequestMapping("/findResource")
-    public List<Resource> findResource(){
+    public ResultBean findResource(){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String[] roles = user.getRole().split(",");
         List<Resource> resources = resourceService.findUrlByRoleNames(Arrays.asList(roles));
-        return resources;
+        return ResultBean.getResultBean(resources);
     }
 
 }

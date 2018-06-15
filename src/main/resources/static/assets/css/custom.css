@@ -12,7 +12,7 @@
 /*----------------page-wrapper----------------*/
 .page-wrapper{
     height: 100vh;
-    position: fixed; left: 100px;top:30px;
+    position: fixed; left: 10px;top:0;
 }
 
 /*----------------toggeled sidebar----------------*/

@@ -1,13 +1,14 @@
 package com.zyj.security;
 
 import com.zyj.dao.ResourceMapper;
+import com.zyj.model.Resource;
 import com.zyj.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 import java.util.List;
@@ -22,7 +23,7 @@ public class RbacService {
 
     private AntPathMatcher antPathMatcher = new AntPathMatcher();
 
-    @Resource
+    @Autowired
     private ResourceMapper resourceMapper;
 
     public boolean hasPermission(HttpServletRequest request, Authentication authentication) {
@@ -32,11 +33,12 @@ public class RbacService {
             User user = (User) principal;
             String[] roles = user.getRole().split(",");
 
-            List<String> urls = resourceMapper.findUrlByRoleNames(Arrays.asList(roles));
+            List<Resource> urls = resourceMapper.findUrlByRoleNames(Arrays.asList(roles));
 
             // 注意这里不能用equal来判断，因为有些URL是有参数的，所以要用AntPathMatcher来比较
-            for (String url : urls) {
-                if (antPathMatcher.match(url, request.getRequestURI())) {
+            for (Resource resource : urls) {
+                String requestURI = request.getRequestURI();
+                if (antPathMatcher.match(resource.getResourceUrl(), requestURI)) {
                     hasPermission = true;
                     break;
                 }

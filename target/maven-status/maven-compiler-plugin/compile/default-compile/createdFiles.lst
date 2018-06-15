@@ -1,0 +1,4 @@
+com\zyj\service\IUserService.class
+com\zyj\service\impl\UserServiceImpl.class
+com\zyj\service\IResourceService.class
+com\zyj\service\impl\ResourceServiceImpl.class

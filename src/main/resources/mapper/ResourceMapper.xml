@@ -6,20 +6,30 @@
     <result column="pid" jdbcType="INTEGER" property="pid" />
     <result column="resource_name" jdbcType="VARCHAR" property="resourceName" />
     <result column="resource_url" jdbcType="VARCHAR" property="resourceUrl" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="seq" jdbcType="INTEGER" property="seq" />
+    <collection property="children" column="id" select="findResourceByPid" ofType="Resource"/>
   </resultMap>
   <sql id="Base_Column_List">
     id, pid, resource_name, resource_url
   </sql>
 
-  <select id="findUrlByRoleNames" resultType="String" >
-    select rs.resource_url
+  <select id="findUrlByRoleNames" resultMap="BaseResultMap" >
+    select rs.resource_url,rs.id,rs.resource_name,rs.seq,rs.icon,rs.pid
     from resource rs
     LEFT JOIN role_resource rr on rr.resource_id = rs.id
     LEFT JOIN role r on r.id = rr.role_id
-    where r.role_name in
+    where pid is null and r.role_name in
     <foreach collection="list" item="item" close=")" open="(" separator=",">
       #{item}
     </foreach>
+  </select>
+  
+  <select id="findResourceByPid" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"></include>
+    from resource
+    where pid = #{id,jdbcType=INTEGER}
   </select>
 
 
