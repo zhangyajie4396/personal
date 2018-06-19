@@ -30,4 +30,9 @@ public class UserServiceImpl implements IUserService {
     public User loadUserByUsernameAndPassword(String username, String password) {
         return userMapper.getUserByUsernameAndPassword(username, password);
     }
+
+    @Override
+    public List<User> selectList() {
+        return userMapper.selectList();
+    }
 }

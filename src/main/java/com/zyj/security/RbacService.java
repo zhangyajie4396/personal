@@ -3,6 +3,7 @@ package com.zyj.security;
 import com.zyj.dao.ResourceMapper;
 import com.zyj.model.Resource;
 import com.zyj.model.User;
+import com.zyj.model.UserDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -30,13 +31,13 @@ public class RbacService {
         Object principal = authentication.getPrincipal();
         boolean hasPermission = false;
         if (principal instanceof UserDetails) { //首先判断先当前用户是否是我们UserDetails对象。
-            User user = (User) principal;
+            UserDetail user = (UserDetail) principal;
             String[] roles = user.getRole().split(",");
 
-            List<Resource> urls = resourceMapper.findUrlByRoleNames(Arrays.asList(roles));
+            List<Resource> resources = resourceMapper.findUrlByRoleNames(Arrays.asList(roles));
 
             // 注意这里不能用equal来判断，因为有些URL是有参数的，所以要用AntPathMatcher来比较
-            for (Resource resource : urls) {
+            for (Resource resource : resources) {
                 String requestURI = request.getRequestURI();
                 if (antPathMatcher.match(resource.getResourceUrl(), requestURI)) {
                     hasPermission = true;

@@ -2,6 +2,7 @@ package com.zyj.controller;
 
 import com.zyj.model.Resource;
 import com.zyj.model.User;
+import com.zyj.model.UserDetail;
 import com.zyj.service.IResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,7 +27,7 @@ public class TestController {
 
     @RequestMapping("/test")
     public List<Resource> findResource(){
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserDetail user = (UserDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String[] roles = user.getRole().split(",");
         List<Resource> resources = resourceService.findUrlByRoleNames(Arrays.asList(roles));
         return resources;

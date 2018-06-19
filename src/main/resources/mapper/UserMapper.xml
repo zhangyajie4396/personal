@@ -14,7 +14,7 @@
     id, username, password, create_time, create_user_id, update_time, update_user_id
   </sql>
   
-  <select id="findByUsername" resultMap="BaseResultMap" parameterType="String">
+  <select id="findByUsername" resultType="com.zyj.model.UserDetail" parameterType="String">
     select u.id,u.username,u.password,
     GROUP_CONCAT(r.role_name)role
     FROM
@@ -22,6 +22,12 @@
     LEFT JOIN user_role ur on ur.user_id = u.id
     LEFT JOIN role r on r.id = ur.role_id
     where u.username=#{username}
+  </select>
+
+  <select id="selectList" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+
+    from user
   </select>
   
   

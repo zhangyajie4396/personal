@@ -2,6 +2,7 @@ package com.zyj.security;
 
 import com.zyj.dao.UserMapper;
 import com.zyj.model.User;
+import com.zyj.model.UserDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -24,7 +25,7 @@ public class CustomUserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
 
-        User user = userMapper.findByUsername(s);
+        UserDetail user = userMapper.findByUsername(s);
 
         return user;
     }

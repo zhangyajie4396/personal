@@ -14,4 +14,6 @@ public interface IUserService {
     User selectById(Integer id);
 
     User loadUserByUsernameAndPassword(String username,String password);
+
+    List<User> selectList();
 }

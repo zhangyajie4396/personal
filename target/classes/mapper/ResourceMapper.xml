@@ -14,7 +14,18 @@
     id, pid, resource_name, resource_url
   </sql>
 
-  <select id="findUrlByRoleNames" resultMap="BaseResultMap" >
+  <select id="findUrlByRoleNames" resultType="Resource" >
+    select rs.resource_url resourceUrl,rs.id,rs.resource_name resourceName,rs.seq,rs.icon,rs.pid
+    from resource rs
+    LEFT JOIN role_resource rr on rr.resource_id = rs.id
+    LEFT JOIN role r on r.id = rr.role_id
+    where pid is not null and r.role_name in
+    <foreach collection="list" item="item" close=")" open="(" separator=",">
+      #{item}
+    </foreach>
+  </select>
+
+  <select id="findMenuByRoleNames" resultMap="BaseResultMap" >
     select rs.resource_url,rs.id,rs.resource_name,rs.seq,rs.icon,rs.pid
     from resource rs
     LEFT JOIN role_resource rr on rr.resource_id = rs.id

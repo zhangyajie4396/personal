@@ -27,4 +27,7 @@ public interface ResourceMapper {
      * @Return: 
      */
     List<Resource> findUrlByRoleNames(List<String> name);
+
+    //获取菜单
+    List<Resource> findMenuByRoleNames(List<String> name);
 }

@@ -1,7 +1,10 @@
 package com.zyj.dao;
 
 import com.zyj.model.User;
+import com.zyj.model.UserDetail;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
@@ -16,7 +19,9 @@ public interface UserMapper {
 
     int updateByPrimaryKey(User record);
 
-    User findByUsername(String username);
+    UserDetail findByUsername(String username);
 
     User getUserByUsernameAndPassword(@Param("username") String username, @Param("password")String password);
+
+    List<User> selectList();
 }

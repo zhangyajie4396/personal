@@ -21,6 +21,6 @@ public class ResourceServiceImpl implements IResourceService {
 
     @Override
     public List<Resource> findUrlByRoleNames(List<String> list) {
-        return resourceMapper.findUrlByRoleNames(list);
+        return resourceMapper.findMenuByRoleNames(list);
     }
 }

@@ -1,6 +1,7 @@
 package com.zyj.security;
 
 import com.zyj.model.User;
+import com.zyj.model.UserDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -30,7 +31,7 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
         String userName = authentication.getName();// 这个获取表单输入中返回的用户名;
         String password = (String) authentication.getCredentials();// 这个是表单中输入的密码；
         // 这里构建来判断用户是否存在和密码是否正确
-        User userInfo = (User) userDetailService.loadUserByUsername(userName); // 这里调用我们的自己写的获取用户的方法；
+        UserDetail userInfo = (UserDetail) userDetailService.loadUserByUsername(userName); // 这里调用我们的自己写的获取用户的方法；
         if (userInfo == null) {
             throw new BadCredentialsException("用户名不存在");
         }
