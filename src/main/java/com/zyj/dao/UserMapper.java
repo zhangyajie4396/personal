@@ -5,6 +5,7 @@ import com.zyj.model.UserDetail;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
@@ -23,5 +24,5 @@ public interface UserMapper {
 
     User getUserByUsernameAndPassword(@Param("username") String username, @Param("password")String password);
 
-    List<User> selectList();
+    List<Map<String,Object>> selectList();
 }

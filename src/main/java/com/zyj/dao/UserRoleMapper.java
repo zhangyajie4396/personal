@@ -2,6 +2,8 @@ package com.zyj.dao;
 
 import com.zyj.model.UserRole;
 
+import java.util.List;
+
 public interface UserRoleMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,8 @@ public interface UserRoleMapper {
     int updateByPrimaryKeySelective(UserRole record);
 
     int updateByPrimaryKey(UserRole record);
+
+    void deleteByUserId(Integer userId);
+
+    void batchInsert(List<UserRole> list);
 }

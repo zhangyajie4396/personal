@@ -5,6 +5,7 @@ import com.zyj.model.User;
 import com.zyj.model.UserDetail;
 import com.zyj.service.IResourceService;
 import com.zyj.util.ResultBean;
+import com.zyj.util.ResultBeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +32,7 @@ public class ResourceController {
         UserDetail user = (UserDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String[] roles = user.getRole().split(",");
         List<Resource> resources = resourceService.findUrlByRoleNames(Arrays.asList(roles));
-        return ResultBean.getResultBean(resources);
+        return ResultBeanUtil.getResultBean(resources);
     }
 
 }

@@ -15,16 +15,38 @@
     from user_role
     where id = #{id,jdbcType=INTEGER}
   </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user_role
     where id = #{id,jdbcType=INTEGER}
   </delete>
+
+  <delete id="deleteByUserId" parameterType="java.lang.Integer">
+    delete from user_role
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+
+
   <insert id="insert" parameterType="com.zyj.model.UserRole">
     insert into user_role (id, user_id, role_id
       )
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}
       )
   </insert>
+  
+  <insert id="batchInsert" parameterType="list">
+    insert into user_role (id, user_id, role_id
+    )
+    values
+    <foreach collection="list" separator="," item="item" >
+      (
+        #{item.id,jdbcType=INTEGER},
+        #{item.userId,jdbcType=INTEGER},
+        #{item.roleId,jdbcType=INTEGER}
+      )
+    </foreach>
+  </insert>
+  
   <insert id="insertSelective" parameterType="com.zyj.model.UserRole">
     insert into user_role
     <trim prefix="(" suffix=")" suffixOverrides=",">

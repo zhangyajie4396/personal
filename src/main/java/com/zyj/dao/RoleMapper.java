@@ -2,7 +2,9 @@ package com.zyj.dao;
 
 import com.zyj.model.Role;
 
-public interface RoleMapper {
+import java.util.List;
+
+public interface RoleMapper{
     int deleteByPrimaryKey(Integer id);
 
     int insert(Role record);
@@ -14,4 +16,6 @@ public interface RoleMapper {
     int updateByPrimaryKeySelective(Role record);
 
     int updateByPrimaryKey(Role record);
+
+    List<Role> selectAll();
 }

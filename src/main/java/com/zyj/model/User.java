@@ -1,5 +1,9 @@
 package com.zyj.model;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -60,7 +64,15 @@ public class User implements Serializable {
     public User() {
     }
 
+    public static void main(String[] args) {
+//        String jsonData = "{"user":{"username":"root","password":"root"},"roleIds":["1","2"]}";
+//        JSONObject jsonObject = JSONObject.parseObject(jsonData);
+//        User user = JSON.parseObject(jsonObject.getString("user"), User.class);
+//        List<Integer> roleIds = JSON.parseObject(jsonObject.getString("roleIds"), List.class);
+//        System.out.println(user);
+//        System.out.println(roleIds);
 
+    }
 
 
 }

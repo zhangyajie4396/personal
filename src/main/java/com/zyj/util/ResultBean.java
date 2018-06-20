@@ -11,6 +11,26 @@ public class ResultBean {
 
     private  int code;
 
+    private String msg;
+
+    private boolean success;
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
     public Object getData() {
         return data;
     }
@@ -30,12 +50,12 @@ public class ResultBean {
     public ResultBean() {
     }
 
-    public ResultBean(Object data, int code) {
+    public ResultBean(Object data, int code, String msg, boolean success) {
         this.data = data;
         this.code = code;
+        this.msg = msg;
+        this.success = success;
     }
 
-    public static ResultBean getResultBean(Object data){
-        return new ResultBean(data,200);
-    }
+
 }
