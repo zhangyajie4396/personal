@@ -1,6 +1,7 @@
 package com.zyj.service;
 
 import com.zyj.model.Role;
+import com.zyj.model.RoleResource;
 
 import java.util.List;
 
@@ -12,4 +13,12 @@ import java.util.List;
 public interface IRoleService {
 
     List<Role> selectAll();
+
+    void saveRole(Role role);
+
+    void updateRole(Role role);
+
+    void deleteByIds(List<Integer> ids);
+
+    void permissionConfig(List<RoleResource> list);
 }

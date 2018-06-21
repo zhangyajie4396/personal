@@ -72,6 +72,13 @@ public class UserServiceImpl implements IUserService {
 
     }
 
+    @Override
+    @Transactional
+    public void deleteByIds(List<Integer> ids) {
+       userMapper.deleteByIds(ids);
+       userRoleMapper.deleteByUserIds(ids);
+    }
+
 
     private void batchInsert(User user,List<String> roleIds){
         if(roleIds == null || roleIds.size() ==0){

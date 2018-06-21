@@ -30,4 +30,7 @@ public interface ResourceMapper {
 
     //获取菜单
     List<Resource> findMenuByRoleNames(List<String> name);
+
+    //查询所有资源
+    List<Resource> findAll();
 }

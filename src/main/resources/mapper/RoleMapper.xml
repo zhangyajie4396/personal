@@ -5,6 +5,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="role_name" jdbcType="VARCHAR" property="roleName" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <collection property="resources" ofType="com.zyj.model.Resource" column="id" select="findResourceByRoleId"/>
   </resultMap>
   <sql id="Base_Column_List">
     id, role_name,remark
@@ -21,6 +22,21 @@
     <include refid="Base_Column_List"/>
     from role
   </select>
+  
+  <select id="findResourceByRoleId" resultType="Resource">
+    select r.id,r.resource_name resourceName
+    from resource r LEFT JOIN role_resource rr on r.id = rr.resource_id
+    where rr.role_id = #{id}
+  </select>
+
+  <delete id="deleteByIds" parameterType="list">
+    delete from role
+    where id in
+    <foreach collection="list" open="(" item="item" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from role
     where id = #{id,jdbcType=INTEGER}
@@ -48,6 +64,9 @@
       </if>
       <if test="roleName != null">
         #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>

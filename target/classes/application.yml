@@ -28,4 +28,7 @@ pagehelper:
    params: count=countSql
 
 logging:
-  level: com.zyj.dao=debug
+  level:
+    com.zyj.dao: DEBUG
+
+

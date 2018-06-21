@@ -1,12 +1,16 @@
 package com.zyj.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 public class Resource {
+
     private Integer id;
 
     private Integer pid;
 
+    @JsonProperty(value = "text")
     private String resourceName;
 
     private String resourceUrl;
@@ -15,6 +19,7 @@ public class Resource {
 
     private String icon;
 
+    @JsonProperty(value = "nodes")
     private List<Resource> children;
 
     public List<Resource> getChildren() {

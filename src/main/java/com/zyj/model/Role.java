@@ -1,11 +1,24 @@
 package com.zyj.model;
 
+import java.util.List;
+
 public class Role {
     private Integer id;
 
     private String roleName;
 
     private String remark;
+
+    private List<Resource> resources;
+
+
+    public List<Resource> getResources() {
+        return resources;
+    }
+
+    public void setResources(List<Resource> resources) {
+        this.resources = resources;
+    }
 
     public String getRemark() {
         return remark;

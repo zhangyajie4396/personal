@@ -19,4 +19,6 @@ public interface IUserService {
     void saveUser(User user,List<String> roleIds);
 
     void updateUser(User user,List<String> roleIds);
+
+    void deleteByIds(List<Integer> ids);
 }

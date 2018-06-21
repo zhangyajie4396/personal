@@ -35,4 +35,10 @@ public class ResourceController {
         return ResultBeanUtil.getResultBean(resources);
     }
 
+    @RequestMapping("/findAll")
+    public ResultBean findAll(){
+        List<Resource> resources = resourceService.findAll();
+        return ResultBeanUtil.getResultBean(resources);
+    }
+
 }

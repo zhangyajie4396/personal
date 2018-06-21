@@ -17,5 +17,9 @@ public interface RoleMapper{
 
     int updateByPrimaryKey(Role record);
 
+    //查询所有的角色
     List<Role> selectAll();
+
+    void deleteByIds(List<Integer> ids);
+
 }

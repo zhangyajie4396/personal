@@ -9,15 +9,35 @@ function batchDelFun() {
         showBox("请至少选一条记录",1);
         return;
     }
+    var ids = [];
+    for(var i=0;i<selections.length;i++){
+        ids.push(selections[i].id);
+    }
+    $.ajax({
+        type : 'post',
+        url :'/user/deleteByIds' ,
+        data:{
+            ids:ids
+        },
+        success : function(data) {
+            if(data.success){
+                showBox(data.msg, 4);
+                $("#table").bootstrapTable('refresh');
+            }else{
+                showBox(data.msg, 5);
+            }
+        }
+    });
+
 }
 
 function editUserFun(row) {
+    $("#myModalLabel").text("编辑");
     $('#myModal').modal();
     $('#id').val(row.id);
     $('#username').val(row.username);
     $('#password').val(row.password);
 
-    console.info(row)
     var arr=row.roleId.split(',');
     $('.selectpicker').selectpicker('val', arr);
 }
@@ -48,7 +68,13 @@ $(function(){
             $('.selectpicker').selectpicker('refresh');
         }
     });
-    
+
+
+    $('#myModal').on('show.bs.modal', function() {
+        document.getElementById("form").reset();
+        $('.selectpicker').selectpicker('val', '');
+
+    });
     
     $("#btn_submit").click(function () {
 

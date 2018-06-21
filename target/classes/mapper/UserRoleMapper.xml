@@ -46,7 +46,16 @@
       )
     </foreach>
   </insert>
-  
+
+
+  <delete id="deleteByUserIds" parameterType="list">
+    delete from user_role
+    where user_id in
+    <foreach collection="list" open="(" item="item" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+
   <insert id="insertSelective" parameterType="com.zyj.model.UserRole">
     insert into user_role
     <trim prefix="(" suffix=")" suffixOverrides=",">

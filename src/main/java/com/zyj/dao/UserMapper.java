@@ -25,4 +25,6 @@ public interface UserMapper {
     User getUserByUsernameAndPassword(@Param("username") String username, @Param("password")String password);
 
     List<Map<String,Object>> selectList();
+
+    void deleteByIds(List<Integer> ids);
 }

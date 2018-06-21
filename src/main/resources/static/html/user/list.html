@@ -1,4 +1,4 @@
-<html lang="zh">
+<html lang="zh" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
 
@@ -9,15 +9,7 @@
 
     <!-- 引入bootstrap-table样式 -->
     <link href="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.css" rel="stylesheet">
-    <script src="/js/jquery.js" type="text/javascript"></script>
-
-    <style>
-        /*body{*/
-        /*overflow-x:hidden;*/
-        /*overflow-y:hidden;*/
-        /*}*/
-    </style>
-
+    <script src="/js/jquery.js" ></script>
 </head>
 <body style="height: 80%">
 <div id="toolbar" class="btn-group">
@@ -72,7 +64,7 @@
 <script>
     $("#table").bootstrapTable({ // 对应table标签的id
         url: "/user/selectList", // 获取表格数据的url
-        // cache: false, // 设置为 false 禁用 AJAX 数据缓存， 默认为true
+        cache: false, // 设置为 false 禁用 AJAX 数据缓存， 默认为true
         striped: true,  //表格显示条纹，默认为false
         toolbar:'#toolbar',
         search:true,

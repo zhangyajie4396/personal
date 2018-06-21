@@ -30,12 +30,12 @@ function addTabs() {
     $('.tt').on('click','a',function(e,b){
 
         options = JSON.parse($(this).attr("opt"))
-        var exists = checkTabIsExists("deviceulid", options.resourceName);
+        var exists = checkTabIsExists("deviceulid", options.text);
         if(exists){
-            $("#tab_a_"+options.resourceName).click();
+            $("#tab_a_"+options.text).click();
         } else {
 
-            $("#deviceulid").append('<li id="tab_li_'+options.resourceName+'"><a href="#tab_content_'+options.resourceName+'" data-toggle="tab" id="tab_a_'+options.resourceName+'"><button class="close closeTab" type="button" onclick="closeTab(this);">×</button>'+options.resourceName+'</a></li>');
+            $("#deviceulid").append('<li id="tab_li_'+options.text+'"><a href="#tab_content_'+options.text+'" data-toggle="tab" id="tab_a_'+options.text+'"><button class="close closeTab" type="button" onclick="closeTab(this);">×</button>'+options.text+'</a></li>');
 
             //固定TAB中IFRAME高度
             mainHeight = $(document.body).height() - 50;
@@ -46,8 +46,8 @@ function addTabs() {
             } else {
                 content = '<iframe src="' + options.resourceUrl + '" style="padding: 10px; width:100%;" height="'+mainHeight+'px" frameborder="0" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes"></iframe>';
             }
-            $(".tab-content").append('<div id="tab_content_'+options.resourceName+'" role="tabpanel" class="tab-pane" id="'+options.resourceName+'">'+content+'</div>');
-            $("#tab_a_"+options.resourceName).click();
+            $(".tab-content").append('<div id="tab_content_'+options.text+'" role="tabpanel" class="tab-pane" id="'+options.text+'">'+content+'</div>');
+            $("#tab_a_"+options.text).click();
         }
 
     });
@@ -65,11 +65,11 @@ $(function(){
                 var obj = arr[i];
                 for(var j=0;j<lis.length;j++){
                     var li = lis[j];
-                    if(obj.resourceName == $(li).attr("name")){
+                    if(obj.text == $(li).attr("name")){
                         $(li).show();
                         var div = $(li).find("div");
-                        $(obj.children).each(function(item,child){
-                            $(div).append($("<li class='tt'><a href='javascript:void(0)' opt='"+JSON.stringify(child)+"'>"+child.resourceName+"</a></li>"));
+                        $(obj.nodes).each(function(item,child){
+                            $(div).append($("<li class='tt'><a href='javascript:void(0)' opt='"+JSON.stringify(child)+"'>"+child.text+"</a></li>"));
                         });
                         continue;
                     }

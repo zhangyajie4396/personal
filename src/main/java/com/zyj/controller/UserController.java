@@ -9,9 +9,11 @@ import com.zyj.util.ResultBeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -64,6 +66,18 @@ public class UserController {
             User user = JSON.parseObject(jsonObject.getString("user"), User.class);
             List<String> roleIds = JSON.parseObject(jsonObject.getString("roleIds"), List.class);
             userService.updateUser(user,roleIds);
+            return ResultBeanUtil.getSuccess();
+        }catch (Exception e){
+            return ResultBeanUtil.getFail(e.getMessage());
+        }
+    }
+
+
+    @RequestMapping("/deleteByIds")
+    public ResultBean deleteByIds(@RequestParam("ids[]") Integer[] ids){
+        try {
+
+            userService.deleteByIds(Arrays.asList(ids));
             return ResultBeanUtil.getSuccess();
         }catch (Exception e){
             return ResultBeanUtil.getFail(e.getMessage());

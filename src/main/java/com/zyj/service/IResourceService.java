@@ -22,4 +22,6 @@ public interface IResourceService {
      *     根据角色查询资源
        */
     List<Resource> findUrlByRoleNames(List<String> name);
+
+    List<Resource> findAll();
 }

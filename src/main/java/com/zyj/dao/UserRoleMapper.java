@@ -20,4 +20,6 @@ public interface UserRoleMapper {
     void deleteByUserId(Integer userId);
 
     void batchInsert(List<UserRole> list);
+
+    void deleteByUserIds(List<Integer> ids);
 }

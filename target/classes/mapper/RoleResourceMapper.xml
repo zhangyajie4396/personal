@@ -19,12 +19,37 @@
     delete from role_resource
     where id = #{id,jdbcType=INTEGER}
   </delete>
+
+  <delete id="deleteByRoleIds" parameterType="list">
+    delete from role_resource
+    where role_id in
+    <foreach collection="list" open="(" item="item" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+
+
   <insert id="insert" parameterType="com.zyj.model.RoleResource">
     insert into role_resource (id, role_id, resource_id
       )
     values (#{id,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, #{resourceId,jdbcType=INTEGER}
       )
   </insert>
+  
+  <insert id="batchInsert" parameterType="list">
+    insert into role_resource (id, role_id, resource_id
+    )
+    values
+    <foreach collection="list" separator="," item="item">
+      (
+        #{item.id,jdbcType=INTEGER},
+        #{item.roleId,jdbcType=INTEGER},
+        #{item.resourceId,jdbcType=INTEGER}
+      )
+    </foreach>
+  </insert>
+  
+  
   <insert id="insertSelective" parameterType="com.zyj.model.RoleResource">
     insert into role_resource
     <trim prefix="(" suffix=")" suffixOverrides=",">
